@@ -1,3 +1,9 @@
+<!--
+  Page: Top Rated Movies
+  Description: This page displays movies with a high rating (8.5 or higher).
+  It uses topRatedPage.js to filter and sort the dataset, and generate-details.js to render the gallery.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +51,7 @@
           <a href="./trendingPage.html" class="navbar-item has-text-grey-light">Trending</a>
           <a href="./fourKPage.html" class="navbar-item has-text-grey-light">4K</a>
           <a href="./topRatedPage.html" class="navbar-item has-text-grey-light">Top Rated</a>
-          <a href="login.html" class="navbar-item has-text-grey-light">Log In</a>
+          <a href="#" class="navbar-item has-text-grey-light">Log In</a>
         </div>
       </div>
     </div>
@@ -63,7 +69,7 @@
 
     <!-- Film Gallery -->
     <section class="section">
-      <h1 class="title">Latest Releases</h1>
+      <h1 class="title">Top Rated Movies</h1>
       <p class="subtitle">Click a poster to view details.</p>
       <div id="gallery" class="columns is-multiline"></div>
     </section>
@@ -79,9 +85,8 @@
   </footer>
 
   <script src="../js/generate-details.js"></script>
-  <script type="module" src="../js/homepage.js"></script>
+  <script type="module" src="../js/topRatedPage.js"></script>
   <script type="module" src="../js/movieSearch.js"></script>
-
 
 
 </body>
