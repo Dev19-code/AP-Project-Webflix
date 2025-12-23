@@ -52,8 +52,8 @@
           </div>
 
           <aside class="column is-4" id="col-similar">
-            <h3 class="title is-6">Recommended</h3>
-            <div id="similar-list" class="columns is-multiline"></div>
+            <!-- <h3 class="title is-6">Recommended</h3> -->
+            <div id="similar-list"></div>
           </aside>
         </section>
 
@@ -152,13 +152,19 @@
       btnDownload.className = 'button is-light';
       btnDownload.textContent = 'Download';
       btnDownload.href = movie.download || '#';
-      btnDownload.setAttribute('download', '');
+      if (movie.download) {
+        btnDownload.setAttribute('target', '_blank');
+        btnDownload.setAttribute('download', '');
+      }
       posterActions.appendChild(btnDownload);
 
       const btnTrailer = document.createElement('a');
       btnTrailer.className = 'button is-primary';
       btnTrailer.textContent = 'Watch Trailer';
       btnTrailer.href = movie.trailer || '#';
+      if (movie.trailer) {
+        btnTrailer.setAttribute('target', '_blank');
+      }
       posterActions.appendChild(btnTrailer);
 
       // downloads quick list
@@ -169,7 +175,7 @@
         dl.className = 'box';
         movie.downloads.forEach(d => {
           const a = document.createElement('a');
-          a.href = d.url || '#';
+          a.href = '#';
           a.className = 'button is-small is-fullwidth is-light';
           a.textContent = (d.label || d.quality || 'Download');
           dl.appendChild(a);
@@ -180,7 +186,15 @@
       // similar/recommended
       const similarRoot = document.getElementById('similar-list');
       similarRoot.innerHTML = '';
-      if (Array.isArray(movie.similar)) {
+      if (Array.isArray(movie.similar) && movie.similar.length) {
+        const h3 = document.createElement('h3');
+        h3.className = 'title is-6';
+        h3.textContent = 'Recommended';
+        similarRoot.appendChild(h3);
+
+        const columnsContainer = document.createElement('div');
+        columnsContainer.className = 'columns is-multiline';
+
         movie.similar.forEach(s => {
           const col = document.createElement('div');
           col.className = 'column is-half';
@@ -189,16 +203,19 @@
           const imgWrap = document.createElement('div');
           imgWrap.className = 'card-image';
           const fig = document.createElement('figure');
-          fig.className = 'image is-4by3';
+          fig.className = 'image is-3by4';
           const im = document.createElement('img');
           im.src = s.poster || '';
           im.alt = s.title || 'poster';
+          im.style.objectFit = 'cover';
+          im.style.width = '100%';
+          im.style.height = '100%';
           fig.appendChild(im);
           imgWrap.appendChild(fig);
           const content = document.createElement('div');
           content.className = 'card-content';
           const p = document.createElement('p');
-          p.className = 'title is-6';
+          p.className = 'title is-7 has-text-centered';
           p.textContent = s.title || '';
           content.appendChild(p);
           card.appendChild(imgWrap);
@@ -208,8 +225,9 @@
             if (window.generateDetails) window.generateDetails(s);
           });
           col.appendChild(card);
-          similarRoot.appendChild(col);
+          columnsContainer.appendChild(col);
         });
+        similarRoot.appendChild(columnsContainer);
       }
 
       // middle section: summary & cast
