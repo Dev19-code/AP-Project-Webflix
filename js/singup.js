@@ -5,7 +5,7 @@
  */
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-import { setupPasswordToggle } from "./utils.js";
+import { setupPasswordToggle, validateEmail, validatePassword } from "./utils.js";
 import { auth, db } from "./firestore.js";
 
         // Initialize toggles
@@ -27,6 +27,19 @@ import { auth, db } from "./firestore.js";
 
             // Clear previous errors
             errorEl.classList.add('hidden');
+
+            // Input Validation
+            if (!validateEmail(contact)) {
+                errorEl.textContent = "Error: Please enter a valid email address.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                errorEl.textContent = "Error: Password must be at least 8 characters long and contain both letters and numbers.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
 
             // Password Match Validation
             if (password !== confirmPassword) {

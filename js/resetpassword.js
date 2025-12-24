@@ -5,6 +5,7 @@
  */
 import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { auth } from "./firestore.js";
+import { validateEmail } from "./utils.js";
 
 /**
  * Handle password reset form submission.
@@ -16,9 +17,16 @@ document.getElementById('forgot-form').onsubmit = async (e) => {
     const successEl = document.getElementById('forgot-success');
     const errorEl = document.getElementById('forgot-error');
 
-    btn.classList.add('is-loading');
     successEl.classList.add('hidden');
     errorEl.classList.add('hidden');
+
+    if (!validateEmail(contact)) {
+        errorEl.textContent = "Please enter a valid email address.";
+        errorEl.classList.remove('hidden');
+        return;
+    }
+
+    btn.classList.add('is-loading');
 
     try {
         await sendPasswordResetEmail(auth, contact);

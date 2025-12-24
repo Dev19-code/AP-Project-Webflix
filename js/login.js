@@ -5,7 +5,7 @@
  */
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-import { setupPasswordToggle } from "./utils.js";
+import { setupPasswordToggle, validateEmail, validatePassword } from "./utils.js";
 import { auth, db } from "./firestore.js";
 
         // DOM Elements
@@ -28,11 +28,24 @@ import { auth, db } from "./firestore.js";
             e.preventDefault();
             authError.classList.add('hidden');
             authMessage.classList.add('hidden');
-            authSubmitBtn.classList.add('is-loading');
-            isLoggingIn = true;
 
             const contact = document.getElementById('auth-contact').value;
             const password = document.getElementById('auth-password').value;
+
+            if (!validateEmail(contact)) {
+                authError.textContent = "Please enter a valid email address.";
+                authError.classList.remove('hidden');
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                authError.textContent = "Password must be at least 8 characters long and contain both letters and numbers.";
+                authError.classList.remove('hidden');
+                return;
+            }
+
+            authSubmitBtn.classList.add('is-loading');
+            isLoggingIn = true;
 
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, contact, password);
