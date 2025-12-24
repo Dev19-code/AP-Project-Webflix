@@ -154,3 +154,144 @@ $text-weak: #9ca3af; // Gray 400, for less prominent text
     padding: 1rem 0;
   }
 }
+
+// --- 6. Light Mode Overrides ---
+// These styles ensure the site looks good when the user's system is in light mode.
+// We override the hardcoded dark values with light-appropriate ones.
+@media (prefers-color-scheme: light) {
+  :root {
+    --bulma-body-background-color: #ffffff;
+    --bulma-text: #374151;
+    --bulma-title-color: #111827;
+    --bulma-subtitle-color: #4b5563;
+    --bulma-scheme-main: #ffffff;
+    --bulma-scheme-main-bis: #f3f4f6;
+    --bulma-scheme-main-ter: #e5e7eb;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #374151;
+  }
+
+  // Invert text utility classes for light mode so we don't have to change HTML
+  .has-text-white {
+    color: #111827 !important; // gray-900
+  }
+
+  .has-text-grey-light {
+    color: #6b7280 !important; // gray-500
+  }
+
+  .has-text-grey-lighter {
+    color: #4b5563 !important; // gray-600
+  }
+
+  // Search bar overrides for light mode
+  .has-background-grey-darker {
+    background-color: #f3f4f6 !important;
+  }
+  .has-text-light {
+    color: #374151 !important;
+  }
+  .input.has-background-grey-darker::placeholder {
+    color: #6b7280 !important;
+  }
+
+  // Navbar
+  .custom-navbar-bg {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e5e7eb; // gray-200
+
+    .navbar-item {
+        color: #374151; // gray-700
+
+        &.has-text-white {
+            color: #111827 !important;
+        }
+
+        &:hover {
+            background-color: #f3f4f6; // gray-100
+            color: #111827;
+        }
+    }
+  }
+
+  // Banner
+  .custom-banner-bg {
+    background-color: #f3f4f6 !important;
+    border: 1px solid #e5e7eb;
+    box-shadow: none;
+
+    .title.has-text-white {
+        color: #111827 !important;
+    }
+  }
+
+  // Section Title
+  .custom-section-title {
+    color: #111827;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  // Cards
+  #gallery .card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    color: #374151;
+
+    &:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  // Details Page Light Mode
+  .details-page {
+    background-color: #f9fafb; // gray-50
+    color: #374151; // gray-700
+
+    .title {
+      color: #111827 !important;
+    }
+
+    .navbar {
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .box, .card {
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        color: #374151;
+    }
+    .card .card-content .title {
+      color: #111827 !important;
+    }
+
+    .notification {
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+    }
+
+    .tag.is-dark {
+        background-color: #e5e7eb;
+        color: #111827;
+    }
+
+    .input, .textarea {
+        background-color: #ffffff;
+        border-color: #d1d5db;
+        color: #111827;
+        &::placeholder { color: #9ca3af; }
+    }
+
+    .scene-tag {
+        background-color: #e5e7eb;
+        color: #374151;
+    }
+
+    .comment {
+        border-bottom: 1px solid #e5e7eb;
+    }
+  }
+}
