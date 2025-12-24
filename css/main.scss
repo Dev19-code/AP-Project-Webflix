@@ -257,6 +257,10 @@ $text-weak: #9ca3af; // Gray 400, for less prominent text
 
     .navbar {
         border-bottom: 1px solid #e5e7eb;
+
+        .has-text-white {
+            color: #111827 !important;
+        }
     }
 
     .box, .card {

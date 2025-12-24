@@ -21749,6 +21749,9 @@ has-background-danger.is-hoverable:active {
   .details-page .navbar {
     border-bottom: 1px solid #e5e7eb;
   }
+  .details-page .navbar .has-text-white {
+    color: #111827 !important;
+  }
   .details-page .box, .details-page .card {
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
