@@ -24,6 +24,9 @@
   <!-- 1. AUTHENTICATION PAGE (The "Login/Register" Screen) -->
   <div id="auth-container">
     <div class="auth-card">
+      <a class="button is-small is-ghost has-text-grey-light mb-5" href="./homePage.html">
+        <i data-lucide="arrow-left" class="mr-1"></i> Back to Home
+      </a>
       <div class="has-text-centered mb-6">
         <h1 class="title is-2 has-text-white">Web<span class="has-text-info">flix</span></h1>
         <p id="auth-subtitle" class="subtitle is-6 has-text-grey-light">Sign in to access your library</p>
@@ -141,6 +144,11 @@
   <!-- Firebase Logic -->
   <script type="module" src="../js/login.js"></script>
 
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
 </body>
 
 </html>

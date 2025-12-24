@@ -4,104 +4,129 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Film details</title>
+  <title>Webflix - Movie Details</title>
   <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/bulma.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body>
-  <section class="section">
+<body class="details-page">
+  <nav class="navbar">
     <div class="container">
-      <nav class="level">
-        <div class="level-left">
-          <div class="level-item">
-            <a class="button is-light" href="javascript:history.back()">← Back to gallery</a>
+      <div class="navbar-brand">
+        <a class="navbar-item is-size-4 has-text-weight-bold" href="homePage.html">
+          <span class="has-text-white">Web<span class="has-text-info">flix</span></span>
+        </a>
+      </div>
+      <div class="navbar-menu is-active" style="background: transparent; box-shadow: none;">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <a class="button is-small is-ghost has-text-grey-light" href="javascript:history.back()">
+              <i data-lucide="arrow-left" class="mr-1"></i> Back
+            </a>
           </div>
         </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
 
+  <section class="section">
+    <div class="container">
       <div id="not-found" class="notification is-warning is-hidden">
         Movie details not found. Try returning to the gallery.
       </div>
 
       <!-- Main movie root: starts hidden until populated -->
       <div id="movie-root" class="is-hidden">
-        <!-- Top section: poster | details+downloads | similar -->
-        <section id="top-section" class="columns is-variable is-6">
-          <aside class="column is-3" id="col-poster">
-            <figure class="image poster-wrap">
-              <img id="movie-poster" alt="movie poster" />
+
+        <!-- Top Section -->
+        <div class="columns is-variable is-8">
+          <!-- Poster Column -->
+          <div class="column is-3-desktop is-4-tablet">
+            <figure class="image mb-4">
+              <img id="movie-poster" class="poster-image" alt="movie poster" />
             </figure>
-            <div id="poster-actions" class="buttons" style="margin-top:0.75rem"></div>
-          </aside>
+            <div id="poster-actions" class="buttons is-centered"></div>
+          </div>
 
-          <div class="column is-5" id="col-details">
-            <h1 id="movie-title" class="title"></h1>
-            <h2 id="movie-sub" class="subtitle has-text-grey"></h2>
+          <!-- Details Column -->
+          <div class="column is-6-desktop is-8-tablet">
+            <h1 id="movie-title" class="title is-1 is-size-2-mobile mb-2"></h1>
 
-            <div class="tags are-medium" id="movie-meta">
-              <span class="tag is-info" id="movie-rating"></span>
+            <div class="is-flex is-align-items-center mb-4" style="gap: 0.75rem; flex-wrap: wrap;">
+              <span id="movie-rating" class="has-text-white is-size-4 has-text-weight-bold"></span>
+              <h2 id="movie-sub" class="subtitle is-5 mb-0"></h2>
             </div>
 
-            <div id="movie-core" class="content" style="margin-top:1rem">
+            <div id="movie-genres" class="tags mb-5"></div>
+
+            <div class="content is-medium has-text-grey-lighter">
               <p id="movie-description"></p>
-              <div id="movie-genres" style="margin-top:0.75rem"></div>
             </div>
 
             <!-- Downloads / Quick actions -->
-            <div id="movie-downloads" style="margin-top:1rem"></div>
-          </div>
-
-          <aside class="column is-4" id="col-similar">
-            <!-- <h3 class="title is-6">Recommended</h3> -->
-            <div id="similar-list"></div>
-          </aside>
-        </section>
-
-        <!-- Middle section: more details (actors, summary, languages, downloads details) -->
-        <section id="middle-section" class="section">
-          <div class="columns is-variable is-6">
-            <div class="column is-two-thirds">
-              <h3 class="title is-5">Summary</h3>
-              <div id="movie-summary" class="content"></div>
-
-              <h3 class="title is-6">Cast</h3>
-              <div id="movie-cast" class="tags"></div>
-            </div>
-            <div class="column">
-              <h3 class="title is-6">Details & Options</h3>
-              <ul id="movie-details-list"></ul>
+            <div class="box mt-5" style="border: 1px solid #334155;">
+              <h3 class="title is-6 has-text-grey-light mb-3">Downloads</h3>
+              <div id="movie-downloads" class="buttons"></div>
             </div>
           </div>
-        </section>
 
-        <!-- Bottom section: comments | scenarios -->
-        <section id="bottom-section" class="section">
-          <div class="columns">
-            <div class="column is-two-thirds">
-              <h3 class="title is-5">Comments</h3>
-              <div id="comments-root">
-                <!-- simple comment form -->
-                <div class="box">
-                  <textarea id="comment-input" class="textarea" placeholder="Write a comment..."></textarea>
-                  <div style="margin-top:0.5rem; display:flex; gap:0.5rem;">
-                    <button id="comment-post" class="button is-primary">Post</button>
-                  </div>
+          <!-- Similar Column (Sidebar) -->
+          <div class="column is-3-desktop is-12-tablet">
+            <h3 class="title is-5 has-text-white mb-4">You might also like</h3>
+            <div id="similar-list" class="columns is-multiline is-mobile"></div>
+          </div>
+        </div>
+
+        <hr style="background-color: #334155;" />
+
+        <!-- Middle Section -->
+        <div class="columns is-variable is-8">
+          <div class="column is-8">
+            <h3 class="title is-4 has-text-white">Plot Summary</h3>
+            <div id="movie-summary" class="content has-text-grey-light mb-6"></div>
+
+            <h3 class="title is-4 has-text-white">Cast</h3>
+            <div id="movie-cast" class="tags are-medium mb-6"></div>
+
+            <h3 class="title is-4 has-text-white">Comments</h3>
+            <div id="comments-root" class="box">
+              <div class="field">
+                <div class="control">
+                  <textarea id="comment-input" class="textarea" rows="2" placeholder="Add a comment..."></textarea>
                 </div>
-                <div id="comment-list"></div>
               </div>
+              <div class="field has-text-right">
+                <button id="comment-post" class="button is-info is-small">Post Comment</button>
+              </div>
+              <div id="comment-list" class="mt-4"></div>
             </div>
-            <div class="column">
-              <h3 class="title is-6">Key Scenes</h3>
+          </div>
+
+          <div class="column is-4">
+            <div class="box">
+              <h3 class="title is-5 has-text-white mb-4">Details</h3>
+              <ul id="movie-details-list" class="is-size-6 has-text-grey-light" style="list-style: none; margin: 0;">
+              </ul>
+            </div>
+
+            <div class="mt-5">
+              <h3 class="title is-5 has-text-white mb-3">Key Scenes</h3>
               <div id="movie-scenes"></div>
             </div>
           </div>
-        </section>
+        </div>
+
       </div>
     </div>
   </section>
 
   <script src="../js/generate-details.js"></script>
   <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
     // Read key from query and populate template
     (function () {
       const params = new URLSearchParams(window.location.search);
@@ -139,7 +164,7 @@
       if (Array.isArray(movie.genres)) {
         movie.genres.forEach((g) => {
           const span = document.createElement('span');
-          span.className = 'tag is-light';
+          span.className = 'tag is-info is-light';
           span.textContent = g;
           genresRoot.appendChild(span);
         });
@@ -149,8 +174,8 @@
       const posterActions = document.getElementById('poster-actions');
       posterActions.innerHTML = '';
       const btnDownload = document.createElement('a');
-      btnDownload.className = 'button is-light';
-      btnDownload.textContent = 'Download';
+      btnDownload.className = 'button is-fullwidth is-info is-outlined mb-2';
+      btnDownload.textContent = 'Download Poster';
       btnDownload.href = movie.download || '#';
       if (movie.download) {
         btnDownload.setAttribute('target', '_blank');
@@ -159,7 +184,7 @@
       posterActions.appendChild(btnDownload);
 
       const btnTrailer = document.createElement('a');
-      btnTrailer.className = 'button is-primary';
+      btnTrailer.className = 'button is-fullwidth is-info';
       btnTrailer.textContent = 'Watch Trailer';
       btnTrailer.href = movie.trailer || '#';
       if (movie.trailer) {
@@ -171,33 +196,22 @@
       const downloadsRoot = document.getElementById('movie-downloads');
       downloadsRoot.innerHTML = '';
       if (Array.isArray(movie.downloads) && movie.downloads.length) {
-        const dl = document.createElement('div');
-        dl.className = 'box';
         movie.downloads.forEach(d => {
           const a = document.createElement('a');
           a.href = '#';
-          a.className = 'button is-small is-fullwidth is-light';
+          a.className = 'button is-small is-fullwidth is-dark mb-2';
           a.textContent = (d.label || d.quality || 'Download');
-          dl.appendChild(a);
+          downloadsRoot.appendChild(a);
         });
-        downloadsRoot.appendChild(dl);
       }
 
       // similar/recommended
       const similarRoot = document.getElementById('similar-list');
       similarRoot.innerHTML = '';
       if (Array.isArray(movie.similar) && movie.similar.length) {
-        const h3 = document.createElement('h3');
-        h3.className = 'title is-6';
-        h3.textContent = 'Recommended';
-        similarRoot.appendChild(h3);
-
-        const columnsContainer = document.createElement('div');
-        columnsContainer.className = 'columns is-multiline';
-
         movie.similar.forEach(s => {
           const col = document.createElement('div');
-          col.className = 'column is-half';
+          col.className = 'column is-half-mobile is-full-tablet';
           const card = document.createElement('div');
           card.className = 'card';
           const imgWrap = document.createElement('div');
@@ -225,9 +239,8 @@
             if (window.generateDetails) window.generateDetails(s);
           });
           col.appendChild(card);
-          columnsContainer.appendChild(col);
+          similarRoot.appendChild(col);
         });
-        similarRoot.appendChild(columnsContainer);
       }
 
       // middle section: summary & cast
@@ -237,7 +250,7 @@
       if (Array.isArray(movie.cast)) {
         movie.cast.forEach(c => {
           const t = document.createElement('span');
-          t.className = 'tag is-light';
+          t.className = 'tag is-dark';
           t.textContent = c;
           castRoot.appendChild(t);
         });
@@ -252,7 +265,7 @@
       if (movie.producer) details.push('Producer: ' + movie.producer);
       if (movie.budget) details.push('Budget: ' + movie.budget);
       if (movie.boxOffice) details.push('Box office: ' + movie.boxOffice);
-      details.forEach(d => { const li = document.createElement('li'); li.textContent = d; detailsList.appendChild(li); });
+      details.forEach(d => { const li = document.createElement('li'); li.className = 'mb-2'; li.textContent = d; detailsList.appendChild(li); });
 
       // scenes
       const scenesRoot = document.getElementById('movie-scenes');
@@ -260,7 +273,7 @@
       if (Array.isArray(movie.scenes)) {
         movie.scenes.forEach(sc => {
           const div = document.createElement('div');
-          div.className = 'scene';
+          div.className = 'scene-tag';
           div.textContent = sc;
           scenesRoot.appendChild(div);
         });

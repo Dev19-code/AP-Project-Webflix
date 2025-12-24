@@ -16,6 +16,9 @@
 <body>
 
   <div class="auth-card">
+    <a class="button is-small is-ghost has-text-grey-light mb-5" href="login.html">
+      <i data-lucide="arrow-left" class="mr-1"></i> Back to Sign In
+    </a>
     <div class="has-text-centered mb-6">
       <h1 class="title is-2 has-text-white">Create <span class="has-text-info">Account</span></h1>
       <p class="subtitle is-6 has-text-grey-light">Join thousands of movie fans</p>
@@ -73,6 +76,12 @@
 
   <!-- Firebase Logic -->
   <script type="module" src="../js/singup.js"> </script>
+
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
 </body>
 
 </html>

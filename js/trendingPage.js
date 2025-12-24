@@ -13,7 +13,7 @@ movies.forEach(element => {
         trendingMovies.push(element);
     }
 });
-// Render demo gallery using helper from generate-details.js
+// Render gallery using helper from generate-details.js
 // This will run once the DOM is fully loaded.
 document.addEventListener('DOMContentLoaded', () => {
     if (window.renderMovies) {
