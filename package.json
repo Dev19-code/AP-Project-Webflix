@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "http-server -p 8080 -c-1",
+    "start": "http-server -p 8080 -c-1 -o",
     "sass": "sass --watch css/main.scss:css/main.css --load-path=node_modules",
     "dev": "concurrently \"npm run sass\" \"npm start\"",
     "build": "sass css/main.scss:css/main.css --load-path=node_modules"
