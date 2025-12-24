@@ -1,8 +1,13 @@
+/**
+ * Script: Login Logic
+ * Description: Handles the user login process using Firebase Auth.
+ * It validates credentials, manages the UI loading state, and redirects to the homepage upon success.
+ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { initializeFirestore, doc, setDoc, getDoc, onSnapshot, collection, persistentLocalCache } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Global Variables
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA98YDCtozjqg-rrcGjQObXd5NEVoF3hLc",
             authDomain: "webflix-ap1-project.firebaseapp.com",
@@ -12,11 +17,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
             appId: "1:625011942136:web:9af0d12c8b7fe3886c910d",
             measurementId: "G-PBFXXTSYMF"
         };
+
+        // Initialize Firebase services
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = initializeFirestore(app, { localCache: persistentLocalCache() });
 
-        // UI References
+        // DOM Elements
         const authContainer = document.getElementById('auth-container');
         const authForm = document.getElementById('auth-form');
         const authPasswordEyeToggle = document.getElementById('password-visiblity-toggle');
@@ -24,9 +31,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
         const authError = document.getElementById('auth-error');
         const authMessage = document.getElementById('auth-message');
 
+        // State
         let isLoggingIn = false;
 
-
+/**
+ * Toggle password visibility on click.
+ */
 authPasswordEyeToggle.onclick = () => {
     const passwordInput = document.getElementById('auth-password');
     if (passwordInput.type === 'password') {
@@ -38,7 +48,10 @@ authPasswordEyeToggle.onclick = () => {
     }
     lucide.createIcons();
 };
-        // Handle Auth Submission
+
+        /**
+         * Handle login form submission.
+         */
         authForm.onsubmit = async (e) => {
             e.preventDefault();
             authError.classList.add('hidden');
@@ -70,7 +83,9 @@ authPasswordEyeToggle.onclick = () => {
             }
         };
 
-        // Auth State Listener
+        /**
+         * Listen for auth state changes to redirect logged-in users.
+         */
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 // Redirect to homepage only if not currently processing a login

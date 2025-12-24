@@ -1,3 +1,5 @@
+/* --- CSS Variables --- */
+/* Defines the color palette for the dark theme. */
 :root {
   --primary-color: #4f46e5;
   --dark-bg: #0f172a;
@@ -5,6 +7,8 @@
   --input-bg: #334155;
 }
 
+/* --- Global Styles --- */
+/* Sets the base font and centers the authentication card on the page. */
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--dark-bg);
@@ -16,6 +20,8 @@ body {
   padding: 20px;
 }
 
+/* --- Authentication Card --- */
+/* The card element that holds the sign-up form. */
 .auth-card {
   background: var(--card-bg);
   padding: 2.5rem;
@@ -25,6 +31,8 @@ body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
+/* --- Form Elements --- */
+/* Custom styles for dark-themed input fields. */
 .input.is-dark {
   background-color: var(--input-bg);
   border-color: #475569;
@@ -35,6 +43,7 @@ body {
   color: #94a3b8;
 }
 
+/* Custom styles for the primary action button. */
 .button.is-indigo {
   background-color: var(--primary-color);
   color: white;
@@ -45,16 +54,19 @@ body {
   background-color: #4338ca;
 }
 
+/* --- Utility & Component Styles --- */
+/* Helper class to hide elements. */
 .hidden {
   display: none !important;
 }
 
-/* Smooth transition for error messages */
+/* Adds a smooth transition for notification visibility. */
 .notification {
   transition: all 0.3s ease;
 }
 
-/* Light Mode Overrides */
+/* --- Light Mode Overrides --- */
+/* Adjusts variables and styles for users who prefer a light color scheme. */
 @media (prefers-color-scheme: light) {
   :root {
     --dark-bg: #f9fafb;
@@ -66,6 +78,7 @@ body {
     color: #1f2937;
   }
 
+  /* Invert text colors for light mode. */
   .has-text-white {
     color: #111827 !important;
   }
@@ -74,12 +87,14 @@ body {
     color: #6b7280 !important;
   }
 
+  /* Adjust input styles for light mode. */
   .input.is-dark {
     background-color: #ffffff;
     border-color: #d1d5db;
     color: #111827;
   }
 
+  /* Soften the card shadow for light mode. */
   .auth-card {
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e7eb;

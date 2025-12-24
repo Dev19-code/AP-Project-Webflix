@@ -1,6 +1,12 @@
+/**
+ * Script: Reset Password Logic
+ * Description: Manages the password reset functionality.
+ * It sends a password reset email via Firebase Auth based on the user's input.
+ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA98YDCtozjqg-rrcGjQObXd5NEVoF3hLc",
     authDomain: "webflix-ap1-project.firebaseapp.com",
@@ -10,9 +16,14 @@ const firebaseConfig = {
     appId: "1:625011942136:web:9af0d12c8b7fe3886c910d",
     measurementId: "G-PBFXXTSYMF"
 };
+
+// Initialize Firebase services
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+/**
+ * Handle password reset form submission.
+ */
 document.getElementById('forgot-form').onsubmit = async (e) => {
     e.preventDefault();
     const contact = document.getElementById('forgot-contact').value.trim();

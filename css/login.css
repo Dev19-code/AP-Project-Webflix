@@ -1,3 +1,5 @@
+ /* --- CSS Variables --- */
+ /* Defines the color palette for the dark theme. */
  :root {
    --primary-color: #4f46e5;
    --dark-bg: #0f172a;
@@ -5,6 +7,8 @@
    --input-bg: #334155;
  }
 
+ /* --- Global Styles --- */
+ /* Sets the base font, background, and text color for the page. */
  body {
    font-family: 'Inter', sans-serif;
    background-color: var(--dark-bg);
@@ -12,7 +16,8 @@
    min-height: 100vh;
  }
 
- /* Auth Page Styles */
+ /* --- Authentication Page --- */
+ /* Styles for the main container that centers the login card. */
  #auth-container {
    display: flex;
    align-items: center;
@@ -21,6 +26,7 @@
    padding: 20px;
  }
 
+ /* The card element that holds the authentication form. */
  .auth-card {
    background: var(--card-bg);
    padding: 2.5rem;
@@ -30,53 +36,8 @@
    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
  }
 
- /* Main App Styles */
- .custom-navbar {
-   background-color: #1e293b !important;
-   border-bottom: 1px solid #334155;
- }
-
- .movie-card-container {
-   position: relative;
-   overflow: hidden;
-   border-radius: 8px;
-   cursor: pointer;
-   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-   transition: transform 0.2s;
-   display: block;
-   aspect-ratio: 2/3;
- }
-
- .movie-card-container:hover {
-   transform: translateY(-4px);
- }
-
- .movie-poster {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
- }
-
- .card-overlay {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: rgba(15, 23, 42, 0.9);
-   opacity: 0;
-   transition: opacity 0.3s;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   padding: 1rem;
- }
-
- .movie-card-container:hover .card-overlay {
-   opacity: 1;
- }
-
+ /* --- Form Elements --- */
+ /* Custom styles for dark-themed input fields. */
  .input.is-dark {
    background-color: var(--input-bg);
    border-color: #475569;
@@ -87,6 +48,7 @@
    color: #94a3b8;
  }
 
+ /* Custom styles for the primary action button. */
  .button.is-indigo {
    background-color: var(--primary-color);
    color: white;
@@ -97,16 +59,13 @@
    background-color: #4338ca;
  }
 
+ /* --- Utility Classes --- */
+ /* Helper class to hide elements. */
  .hidden {
    display: none !important;
  }
 
- #app-content {
-   display: none;
- }
-
- /* Hidden until auth */
-
+ /* Styling for the "Forgot Password" link. */
  .forgot-password-link {
    font-size: 0.75rem;
    display: block;
@@ -114,7 +73,8 @@
    text-align: right;
  }
 
- /* Light Mode Overrides */
+ /* --- Light Mode Overrides --- */
+ /* Adjusts variables and styles for users who prefer a light color scheme. */
  @media (prefers-color-scheme: light) {
    :root {
      --dark-bg: #f9fafb;
@@ -126,6 +86,7 @@
      color: #1f2937;
    }
 
+   /* Invert text colors for light mode. */
    .has-text-white {
      color: #111827 !important;
    }
@@ -134,6 +95,7 @@
      color: #6b7280 !important;
    }
 
+   /* Adjust input styles for light mode. */
    .input.is-dark {
      background-color: #ffffff;
      border-color: #d1d5db;
@@ -144,26 +106,9 @@
      color: #9ca3af;
    }
 
+   /* Soften the card shadow for light mode. */
    .auth-card {
      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
      border: 1px solid #e5e7eb;
-   }
-
-   .custom-navbar {
-     background-color: #ffffff !important;
-     border-bottom: 1px solid #e5e7eb;
-   }
-
-   .card-overlay {
-     background: rgba(255, 255, 255, 0.9);
-     color: #111827;
-   }
-
-   .card-overlay .title {
-     color: #111827 !important;
-   }
-
-   .movie-card-container {
-     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
    }
  }

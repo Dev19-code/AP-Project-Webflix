@@ -1,7 +1,13 @@
+/**
+ * Script: Sign Up Logic
+ * Description: Handles new user registration.
+ * It creates a user in Firebase Auth and saves additional profile information to Firestore.
+ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { initializeFirestore, doc, setDoc, persistentLocalCache } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // Firebase Configuration
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'movie-app-demo';
         const firebaseConfig = {
             apiKey: "AIzaSyA98YDCtozjqg-rrcGjQObXd5NEVoF3hLc",
@@ -12,11 +18,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
             appId: "1:625011942136:web:9af0d12c8b7fe3886c910d",
             measurementId: "G-PBFXXTSYMF"
         };
+
+        // Initialize Firebase services
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = initializeFirestore(app, { localCache: persistentLocalCache() });
 
-        // Password Visibility Toggle Logic
+        /**
+         * Setup visibility toggle for password fields.
+         * @param {string} toggleId - ID of the toggle button.
+         * @param {string} inputId - ID of the input field.
+         */
         const setupToggle = (toggleId, inputId) => {
             const toggle = document.getElementById(toggleId);
             const input = document.getElementById(inputId);
@@ -29,9 +41,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
                 };
             }
         };
+
+        // Initialize toggles
         setupToggle('signup-password-toggle', 'signup-password');
         setupToggle('signup-confirm-password-toggle', 'signup-confirm-password');
 
+        /**
+         * Handle account creation form submission.
+         */
         document.getElementById('signup-form').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('signup-btn');
@@ -45,7 +62,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
             // Clear previous errors
             errorEl.classList.add('hidden');
 
-            // 1. Password Match Validation
+            // Password Match Validation
             if (password !== confirmPassword) {
                 errorEl.textContent = "Error: Passwords do not match.";
                 errorEl.classList.remove('hidden');

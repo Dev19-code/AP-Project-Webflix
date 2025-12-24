@@ -1,7 +1,13 @@
+/**
+ * Script: Auth Check
+ * Description: Monitors the Firebase authentication state.
+ * It dynamically updates the navigation bar to show "Login" or the user's name/logout button.
+ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { initializeFirestore, doc, getDoc, persistentLocalCache } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyA98YDCtozjqg-rrcGjQObXd5NEVoF3hLc",
     authDomain: "webflix-ap1-project.firebaseapp.com",
@@ -12,13 +18,17 @@ const firebaseConfig = {
     measurementId: "G-PBFXXTSYMF"
 };
 
+// Initialize Firebase services
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
-// Initialize Firestore with persistent cache
 const db = initializeFirestore(app, { localCache: persistentLocalCache() });
 
-
+/**
+ * Listen for authentication state changes.
+ * Updates the navigation bar to show user info or login button.
+ *
+ * @param {object} user - The Firebase user object or null.
+ */
 onAuthStateChanged(auth, async (user) => {
     const navbarEnd = document.querySelector('.navbar-end');
     if (!navbarEnd) return;
@@ -32,7 +42,7 @@ onAuthStateChanged(auth, async (user) => {
         // If logged in: Remove login button, show user info
         if (existingUserDisplay) return;
 
-        // 1. Try to get username from Local Storage first (Instant UI, persists across restarts)
+        // Try to get username from Local Storage first
         const cachedName = localStorage.getItem('webflix_username');
         const displayName = cachedName || 'User';
 
@@ -63,7 +73,7 @@ onAuthStateChanged(auth, async (user) => {
         if (loginBtn) loginBtn.remove();
         navbarEnd.appendChild(fragment);
 
-        // 2. Fetch fresh username from Firestore in background
+        // Fetch fresh username from Firestore in background
         try {
             const snap = await getDoc(doc(db, 'artifacts', 'users', user.uid, 'profile'));
             if (snap.exists()) {
