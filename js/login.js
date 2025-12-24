@@ -30,7 +30,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
             const contact = document.getElementById('auth-contact').value;
             authError.classList.add('hidden');
             authMessage.classList.add('hidden');
-            
+
             if (!contact) {
                 authError.textContent = "Please enter your Email or Phone first.";
                 authError.classList.remove('hidden');
@@ -48,7 +48,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
             document.getElementById('auth-subtitle').textContent = isSignUp ? 'Join the community' : 'Sign in to access your library';
             document.getElementById('toggle-text').textContent = isSignUp ? 'Already have an account?' : "Don't have an account?";
             authToggle.textContent = isSignUp ? 'Sign In' : 'Sign Up';
-            
+
             // Hide/Show forgot password
             document.getElementById('forgot-password-container').classList.toggle('hidden', isSignUp);
             authError.classList.add('hidden');
@@ -94,7 +94,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
                 currentUser = user;
                 authContainer.style.display = 'none';
                 appContent.style.display = 'block';
-                
+
                 const profileSnap = await getDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'profile'));
                 displayUsername.textContent = profileSnap.exists() ? profileSnap.data().username : 'User';
 
@@ -173,7 +173,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebas
 
             const btn = document.getElementById('confirm-upload');
             btn.classList.add('is-loading');
-            
+
             try {
                 await setDoc(doc(db, 'artifacts', appId, 'users', currentUser.uid, 'posters', String(targetMovieId)), {
                     image: base64
