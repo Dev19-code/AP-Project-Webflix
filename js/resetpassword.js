@@ -1,4 +1,21 @@
 // Logic to simulate password reset
+
+/*
+ const appId = typeof __app_id !== '1:625011942136:web:9af0d12c8b7fe3886c910d' ? __app_id : 'movie-app-demo';
+        const firebaseConfig = {
+            apiKey: "AIzaSyA98YDCtozjqg-rrcGjQObXd5NEVoF3hLc",
+            authDomain: "webflix-ap1-project.firebaseapp.com",
+            projectId: "webflix-ap1-project",
+            storageBucket: "webflix-ap1-project.appspot.com",
+            messagingSenderId: "625011942136",
+            appId: "1:625011942136:web:9af0d12c8b7fe3886c910d",
+            measurementId: "G-PBFXXTSYMF"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);*/
+
+
         document.getElementById('forgot-form').onsubmit = (e) => {
             e.preventDefault();
             const contact = document.getElementById('forgot-contact').value;
