@@ -3,48 +3,14 @@
  * Description: Handles new user registration.
  * It creates a user in Firebase Auth and saves additional profile information to Firestore.
  */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { initializeFirestore, doc, setDoc, persistentLocalCache } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase Configuration
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'movie-app-demo';
-        const firebaseConfig = {
-            apiKey: "AIzaSyA98YDCtozjqg-rrcGjQObXd5NEVoF3hLc",
-            authDomain: "webflix-ap1-project.firebaseapp.com",
-            projectId: "webflix-ap1-project",
-            storageBucket: "webflix-ap1-project.appspot.com",
-            messagingSenderId: "625011942136",
-            appId: "1:625011942136:web:9af0d12c8b7fe3886c910d",
-            measurementId: "G-PBFXXTSYMF"
-        };
-
-        // Initialize Firebase services
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = initializeFirestore(app, { localCache: persistentLocalCache() });
-
-        /**
-         * Setup visibility toggle for password fields.
-         * @param {string} toggleId - ID of the toggle button.
-         * @param {string} inputId - ID of the input field.
-         */
-        const setupToggle = (toggleId, inputId) => {
-            const toggle = document.getElementById(toggleId);
-            const input = document.getElementById(inputId);
-            if (toggle && input) {
-                toggle.onclick = () => {
-                    const isPassword = input.type === 'password';
-                    input.type = isPassword ? 'text' : 'password';
-                    toggle.innerHTML = isPassword ? '<i data-lucide="eye-off"></i>' : '<i data-lucide="eye"></i>';
-                    lucide.createIcons();
-                };
-            }
-        };
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { setupPasswordToggle } from "./utils.js";
+import { auth, db } from "./firestore.js";
 
         // Initialize toggles
-        setupToggle('signup-password-toggle', 'signup-password');
-        setupToggle('signup-confirm-password-toggle', 'signup-confirm-password');
+        setupPasswordToggle('signup-password-toggle', 'signup-password');
+        setupPasswordToggle('signup-confirm-password-toggle', 'signup-confirm-password');
 
         /**
          * Handle account creation form submission.

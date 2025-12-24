@@ -21561,19 +21561,16 @@ has-background-danger.is-hoverable:active {
   pointer-events: all !important;
 }
 
-/* Custom class for the dark navbar/header */
 .custom-navbar-bg {
   border-bottom: 2px solid #374151;
 }
 
-/* Custom class for the dark banner */
 .custom-banner-bg {
   background-color: #1f2937 !important;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Custom class for the title section separator */
 .custom-section-title {
   color: #ffffff;
   border-bottom: 1px solid #374151;
@@ -21588,11 +21585,10 @@ has-background-danger.is-hoverable:active {
   color: #4f46e5;
 }
 
-/* Gallery Cards on main pages */
 #gallery .card {
   cursor: pointer;
   transition: transform 120ms ease, box-shadow 120ms ease;
-  background-color: #1f2937; /* Use dark card background */
+  background-color: #1f2937;
 }
 
 #gallery .card:hover {

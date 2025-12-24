@@ -1,4 +1,4 @@
-// Demo data set (richer examples for details page)
+// Movies data set
 export const movies = [
     {
         id: 'movie-1',
