@@ -13,7 +13,7 @@ if (search) {
   search.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
       const searchString = e.target.value;
-      window.location.href = `searchResultpage.html?query=${encodeURIComponent(searchString)}`;
+      window.location.href = `searchResultPage.html?query=${encodeURIComponent(searchString)}`;
     }
   });
 }

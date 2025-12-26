@@ -58,7 +58,7 @@ import { auth, db } from "./firestore.js";
                     localStorage.setItem('webflix_username', snap.data().username);
                 }
                 // Manual redirect after cache is set
-                window.location.href = 'homePage.html';
+                window.location.href = 'index.html';
             } catch (err) {
                 isLoggingIn = false;
                 authError.textContent = err.message;

@@ -66,7 +66,7 @@ import { auth, db } from "./firestore.js";
                 localStorage.setItem('webflix_username', username);
 
                 // Redirect to the main app page
-                window.location.href = 'homePage.html';
+                window.location.href = 'index.html';
 
             } catch (err) {
                 errorEl.textContent = "Error: " + err.message;
